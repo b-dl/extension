@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    "jsx": "preserve",
+    "target": "esnext",
+    "module": "esnext",
+    "sourceMap": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "resolveJsonModule": true,
+    "noImplicitReturns": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "lib": [
+      "esnext",
+      "dom"
+    ],
+    "types": [
+      "vite/client",
+      "node",
+      "chrome"
+    ],
+    "typeRoots": [
+      "./node_modules/@types/"
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "views/*"
+      ],
+    },
+    "plugins": [
+      {
+        "name": "@vuedx/typescript-plugin-vue"
+      }
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}
