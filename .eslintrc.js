@@ -54,5 +54,20 @@ module.exports = defineConfig({
         'vue/comment-directive': 'off',
       },
     },
+    {
+      files: ['*.vue'],
+      rules: {
+        'vue/max-attributes-per-line': ['error', {
+          singleline: {
+            max: 5,
+          },
+          multiline: {
+            max: 5,
+          },
+        }],
+        'vue/multi-word-component-names': 0,
+        '@typescript-eslint/no-non-null-assertion': 'off',
+      },
+    },
   ],
 });

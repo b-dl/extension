@@ -1,9 +1,9 @@
 import {
-  browser, debug, IsURL,
-} from '../utils';
+  axios, browser, debug, IsURL,
+} from '../../util';
 import { wsConnect, ws } from './ws';
 
-browser.tabs.onCreated.addListener((tab: chrome.tabs.Tab) => {
+browser.tabs.onCreated.addListener((tab) => {
   debug('Tab创建:', tab);
   if (ws === null || ws.readyState !== WebSocket.OPEN) {
     wsConnect();
@@ -19,10 +19,16 @@ browser.tabs.onActivated.addListener((activeInfo: chrome.tabs.TabActiveInfo) => 
   return browser.runtime.lastError;
 });
 
-browser.tabs.onUpdated.addListener((tabId: number, changeInfo: chrome.tabs.TabChangeInfo, tab: chrome.tabs.Tab) => {
-  if (changeInfo.status === 'complete' && IsURL(tab.url as string)) {
+browser.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+  if (changeInfo.status === 'complete' && tab.url && (tab.url.startsWith('http://') || tab.url.startsWith('https://'))) {
     debug('Tab更新:', {
       tabId, changeInfo, tab,
     });
+    browser.cookies.getAll({ url: tab.url }).then((cookies) => {
+      console.log(cookies);
+    });
+    // axios('/parser', 'POST', {
+
+    // });
   }
 });

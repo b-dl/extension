@@ -1,6 +1,4 @@
-import {
-  browser, debug,
-} from '../utils';
+import { browser, debug } from '../../util';
 import { wsConnect, ws } from './ws';
 
 browser.alarms.onAlarm.addListener((alarm: chrome.alarms.Alarm) => {

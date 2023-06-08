@@ -1,4 +1,4 @@
-import type { Manifest } from 'webextension-polyfill-ts';
+import type { Manifest } from 'webextension-polyfill';
 import pkg from '../package.json';
 
 const isDev = process.env.NODE_ENV === 'development';
@@ -39,11 +39,12 @@ export default async function getManifest() {
     permissions: [
       'alarms',
       'tabs',
+      'storage',
+      'cookies',
     ],
     content_security_policy: {
       extension_pages: 'script-src \'self\'; object-src \'self\'',
     },
-    // @ts-ignore
     host_permissions: [
       'http://*/*', 'https://*/*',
     ],
